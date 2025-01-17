@@ -1,7 +1,11 @@
 import React from 'react';
+import { ICard } from "../models";
 
-export function Listing(props) {
-    const {items} = props;
+interface CardProps {
+  items: ICard[];
+}
+
+export function Listing({items}: CardProps) {
     const formatPrice = (price, code) => {
       switch(code) {
         case 'USD': return '$'+price
@@ -16,10 +20,10 @@ export function Listing(props) {
       }
 
     return (
+      
       <div className="item-list">
         {
-          items.filter(row => row.title).map((jitem, i) => {
-            let item = JSON.parse(JSON.stringify(jitem));
+          items.map((item, i) => {
             return (
                 <div className="item"  key={`item-${item.listing_id}`}>
                 <div className="item-image">
